@@ -4,6 +4,6 @@ import { ChargingSlotController } from './charging-slot.controller';
 
 @Module({
   controllers: [ChargingSlotController],
-  providers: [ChargingSlotService]
+  providers: [ChargingSlotService],
 })
 export class ChargingSlotModule {}

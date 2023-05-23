@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Patch, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Param,
+  Body,
+} from '@nestjs/common';
 import { ChargingStationService } from './charging-station.service';
 import { ChargingStation } from './schemas/charging-station.schema';
 
@@ -22,7 +30,10 @@ export class ChargingStationController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() chargingStation: ChargingStation): Promise<ChargingStation> {
+  update(
+    @Param('id') id: string,
+    @Body() chargingStation: ChargingStation,
+  ): Promise<ChargingStation> {
     return this.chargingStationService.update(id, chargingStation);
   }
 
