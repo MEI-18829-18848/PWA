@@ -6,11 +6,18 @@ import {
   ChargingSlot,
   ChargingSlotSchema,
 } from './schemas/charging-slot.schema';
+import { ChargingStationModule } from '../charging-station/charging-station.module';
+import {
+  ChargingStation,
+  ChargingStationSchema,
+} from '../charging-station/schemas/charging-station.schema';
 
 @Module({
   imports: [
+    ChargingStationModule,
     MongooseModule.forFeature([
       { name: ChargingSlot.name, schema: ChargingSlotSchema },
+      { name: ChargingStation.name, schema: ChargingStationSchema },
     ]),
   ],
   controllers: [ChargingSlotController],
