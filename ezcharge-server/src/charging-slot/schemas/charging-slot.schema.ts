@@ -1,4 +1,13 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+interface Reservation {
+  user: string;
+  startTime: Date;
+  endTime: Date;
+  duration: number;
+  totalPrice: number;
+}
 
 @Schema()
 export class ChargingSlot {
@@ -8,15 +17,12 @@ export class ChargingSlot {
   @Prop({ default: false })
   isOccupied: boolean;
 
-  @Prop()
-  reservation: {
-    user: string;
-    startTime: Date;
-    endTime: Date;
-    duration: number;
-    totalPrice: number;
-  };
+  @Prop({ type: Object, default: {} }) // Specify the type as Object and provide a default value
+  reservation: Reservation;
 
   @Prop({ default: true })
   isAvailable: boolean;
 }
+
+export type ChargingSlotDocument = ChargingSlot & Document;
+export const ChargingSlotSchema = SchemaFactory.createForClass(ChargingSlot);

@@ -1,6 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { ChargingSlot } from '../../charging-slot/schemas/charging-slot.schema';
+import {
+  ChargingSlot,
+  ChargingSlotSchema,
+} from '../../charging-slot/schemas/charging-slot.schema';
+
+class OperationTime {
+  start: string;
+  end: string;
+}
 
 @Schema()
 export class ChargingStation extends Document {
@@ -32,14 +40,11 @@ export class ChargingStation extends Document {
   @Prop({ required: true })
   totalSlots: number;
 
-  @Prop({ type: [ChargingSlot] })
+  @Prop({ type: [ChargingSlotSchema] }) // Use ChargingSlotSchema instead of ChargingSlot
   slots: ChargingSlot[];
 
-  @Prop()
-  operationTime: {
-    start: string;
-    end: string;
-  };
+  @Prop({ type: OperationTime })
+  operationTime: OperationTime;
 
   @Prop({ default: false })
   maintenanceDetection: boolean;
