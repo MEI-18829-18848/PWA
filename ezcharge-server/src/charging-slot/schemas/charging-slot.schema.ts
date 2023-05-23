@@ -3,7 +3,7 @@ import { Prop, Schema } from '@nestjs/mongoose';
 @Schema()
 export class ChargingSlot {
   @Prop({ required: true })
-  slotNumber: number;
+  slotId: number;
 
   @Prop({ default: false })
   isOccupied: boolean;

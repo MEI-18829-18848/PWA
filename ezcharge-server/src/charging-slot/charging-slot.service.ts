@@ -13,7 +13,7 @@ export class ChargingSlotService {
     private chargingSlotModel: Model<ChargingSlot>,
   ) {}
 
-  async findAll(chargingStationId: string): Promise<ChargingSlot[]> {
+  async findAllFromStation(chargingStationId: string): Promise<ChargingSlot[]> {
     const chargingStation = await this.chargingStationModel
       .findById(chargingStationId)
       .exec();
@@ -37,7 +37,9 @@ export class ChargingSlotService {
       throw new Error('Charging station not found');
     }
 
-    const slot = chargingStation.slots.find((s) => s._id.toString() === slotId);
+    const slot = chargingStation.slots.find(
+      (s) => s.slotId.toString() === slotId,
+    );
     if (!slot) {
       throw new Error('Charging slot not found');
     }
@@ -76,7 +78,7 @@ export class ChargingSlotService {
     }
 
     const slotIndex = chargingStation.slots.findIndex(
-      (s) => s._id.toString() === slotId,
+      (s) => s.slotId.toString() === slotId,
     );
     if (slotIndex === -1) {
       throw new Error('Charging slot not found');
@@ -100,7 +102,7 @@ export class ChargingSlotService {
     }
 
     const slotIndex = chargingStation.slots.findIndex(
-      (s) => s._id.toString() === slotId,
+      (s) => s.slotId.toString() === slotId,
     );
     if (slotIndex === -1) {
       throw new Error('Charging slot not found');
