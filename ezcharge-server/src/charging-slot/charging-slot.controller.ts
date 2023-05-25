@@ -10,16 +10,16 @@ import {
 import { ChargingSlotService } from './charging-slot.service';
 import { ChargingSlot } from './schemas/charging-slot.schema';
 
-@Controller('charging-station/')
+@Controller('charging-station')
 export class ChargingSlotController {
   constructor(private chargingSlotService: ChargingSlotService) {}
 
-  @Get(':id/slots')
+  @Get('/:id/slots')
   findAllFromPostID(id: string): Promise<ChargingSlot[]> {
     return this.chargingSlotService.findAllFromStation(id);
   }
 
-  @Get(':id/slots/:slot_id')
+  @Get('/:id/slots/:slot_id')
   findById(
     @Param('id') station_id: string,
     @Param('slot_id') slot_id: string,
@@ -27,7 +27,7 @@ export class ChargingSlotController {
     return this.chargingSlotService.findById(station_id, slot_id);
   }
 
-  @Post(':id/slots')
+  @Post('/:id/slots')
   create(
     @Param('id') id: string,
     @Body() chargingSlot: ChargingSlot,
@@ -35,7 +35,7 @@ export class ChargingSlotController {
     return this.chargingSlotService.create(id, chargingSlot);
   }
 
-  @Patch(':id/slots/:slot_id')
+  @Patch('/:id/slots/:slot_id')
   update(
     @Param('id') id: string,
     @Param('slot_id') slot_id: string,
@@ -44,7 +44,7 @@ export class ChargingSlotController {
     return this.chargingSlotService.update(id, slot_id, chargingSlot);
   }
 
-  @Delete(':id/slots/:slot_id')
+  @Delete('/:id/slots/:slot_id')
   delete(
     @Param('id') id: string,
     @Param('slot_id') slot_id: string,
