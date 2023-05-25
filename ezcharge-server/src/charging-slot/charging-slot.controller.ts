@@ -10,7 +10,7 @@ import {
 import { ChargingSlotService } from './charging-slot.service';
 import { ChargingSlot } from './schemas/charging-slot.schema';
 
-@Controller('charging-station')
+@Controller('charging-stations')
 export class ChargingSlotController {
   constructor(private chargingSlotService: ChargingSlotService) {}
 
