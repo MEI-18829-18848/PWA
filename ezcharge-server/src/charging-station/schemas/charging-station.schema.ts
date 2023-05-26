@@ -1,20 +1,34 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import {
   ChargingSlot,
   ChargingSlotSchema,
 } from '../../charging-slot/schemas/charging-slot.schema';
 
 class OperationTime {
+  @ApiProperty()
   start: string;
+
+  @ApiProperty()
   end: string;
+}
+
+class Location {
+  @ApiProperty()
+  type: string;
+
+  @ApiProperty()
+  coordinates: number[];
 }
 
 @Schema()
 export class ChargingStation extends Document {
+  @ApiProperty()
   @Prop({ required: true })
   name: string;
 
+  @ApiProperty({ type: Location })
   @Prop({
     type: {
       type: String,
@@ -26,29 +40,33 @@ export class ChargingStation extends Document {
       required: true,
     },
   })
-  location: {
-    type: string;
-    coordinates: number[];
-  };
+  location: Location;
 
+  @ApiProperty()
   @Prop({ required: true })
   address: string;
 
+  @ApiProperty()
   @Prop({ default: 0 })
   availableSlots: number;
 
+  @ApiProperty()
   @Prop({ required: true })
   totalSlots: number;
 
-  @Prop({ type: [ChargingSlotSchema] }) // Use ChargingSlotSchema instead of ChargingSlot
+  @ApiProperty({ type: [ChargingSlot] })
+  @Prop({ type: [ChargingSlotSchema] })
   slots: ChargingSlot[];
 
+  @ApiProperty({ type: OperationTime })
   @Prop({ type: OperationTime })
   operationTime: OperationTime;
 
+  @ApiProperty()
   @Prop({ default: false })
   maintenanceDetection: boolean;
 
+  @ApiProperty()
   @Prop([
     {
       slotNumber: { type: Number, required: true },
@@ -62,6 +80,7 @@ export class ChargingStation extends Document {
     endTime: Date;
   }[];
 
+  @ApiProperty()
   @Prop({ required: true })
   kWhCapacity: number;
 }

@@ -1,28 +1,37 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
-interface Reservation {
+export class Reservation {
+  @ApiProperty()
   user: string;
+
+  @ApiProperty()
   startTime: Date;
+
+  @ApiProperty()
   endTime: Date;
+
+  @ApiProperty()
   duration: number;
+
+  @ApiProperty()
   totalPrice: number;
 }
 
 @Schema()
-export class ChargingSlot {
-  @Prop({ required: true })
-  slotId: number;
-
+export class ChargingSlot extends Document {
+  @ApiProperty()
   @Prop({ default: false })
   isOccupied: boolean;
 
-  @Prop({ type: Object, default: {} }) // Specify the type as Object and provide a default value
+  @ApiProperty()
+  @Prop({ type: Reservation, default: {} })
   reservation: Reservation;
 
+  @ApiProperty()
   @Prop({ default: true })
   isAvailable: boolean;
 }
 
-export type ChargingSlotDocument = ChargingSlot & Document;
 export const ChargingSlotSchema = SchemaFactory.createForClass(ChargingSlot);

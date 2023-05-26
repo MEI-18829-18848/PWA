@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ChargingStation } from '../charging-station/schemas/charging-station.schema';
 import { ChargingSlot } from './schemas/charging-slot.schema';
+import { CreateChargingSlotDto } from './dto/create-charging-slot.dto';
+import { UpdateChargingSlotDto } from './dto/update-charging-slot.dto';
 
 @Injectable()
 export class ChargingSlotService {
@@ -37,9 +39,7 @@ export class ChargingSlotService {
       throw new Error('Charging station not found');
     }
 
-    const slot = chargingStation.slots.find(
-      (s) => s.slotId.toString() === slotId,
-    );
+    const slot = chargingStation.slots.find((s) => s._id.toString() === slotId);
     if (!slot) {
       throw new Error('Charging slot not found');
     }
@@ -49,7 +49,7 @@ export class ChargingSlotService {
 
   async create(
     chargingStationId: string,
-    chargingSlot: ChargingSlot,
+    chargingSlotDto: CreateChargingSlotDto,
   ): Promise<ChargingSlot> {
     const chargingStation = await this.chargingStationModel
       .findById(chargingStationId)
@@ -59,6 +59,9 @@ export class ChargingSlotService {
       throw new Error('Charging station not found');
     }
 
+    const chargingSlot = new ChargingSlot(chargingSlotDto);
+    chargingSlot.isOccupied = false;
+
     chargingStation.slots.push(chargingSlot);
     await chargingStation.save();
     return chargingSlot;
@@ -67,7 +70,7 @@ export class ChargingSlotService {
   async update(
     chargingStationId: string,
     slotId: string,
-    chargingSlot: ChargingSlot,
+    chargingSlotDto: UpdateChargingSlotDto,
   ): Promise<ChargingSlot> {
     const chargingStation = await this.chargingStationModel
       .findById(chargingStationId)
@@ -78,11 +81,13 @@ export class ChargingSlotService {
     }
 
     const slotIndex = chargingStation.slots.findIndex(
-      (s) => s.slotId.toString() === slotId,
+      (s) => s._id.toString() === slotId,
     );
     if (slotIndex === -1) {
       throw new Error('Charging slot not found');
     }
+
+    const chargingSlot = new ChargingSlot(chargingSlotDto);
 
     chargingStation.slots[slotIndex] = chargingSlot;
     await chargingStation.save();
@@ -102,7 +107,7 @@ export class ChargingSlotService {
     }
 
     const slotIndex = chargingStation.slots.findIndex(
-      (s) => s.slotId.toString() === slotId,
+      (s) => s._id.toString() === slotId,
     );
     if (slotIndex === -1) {
       throw new Error('Charging slot not found');
