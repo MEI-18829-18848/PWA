@@ -10,7 +10,6 @@ import {
 import { ChargingStationService } from './charging-station.service';
 import { ChargingStation } from './schemas/charging-station.schema';
 import { ApiTags, ApiOperation, ApiParam, ApiBody } from '@nestjs/swagger';
-import { CreateChargingSlotDto } from '../charging-slot/dto/create-charging-slot.dto';
 import { CreateChargingStationDto } from './dto/create-charging-station.dto';
 import { UpdateChargingStationDto } from './dto/update-charging-station.dto';
 
@@ -34,7 +33,7 @@ export class ChargingStationController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new charging station' })
-  @ApiBody({ type: CreateChargingSlotDto })
+  @ApiBody({ type: CreateChargingStationDto })
   create(
     @Body() chargingStation: CreateChargingStationDto,
   ): Promise<ChargingStation> {
