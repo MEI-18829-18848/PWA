@@ -131,3 +131,5 @@ dist
 
 # for any file that is intended to be local-only
 .local/
+
+**/.idea/
