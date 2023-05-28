@@ -1,0 +1,42 @@
+Ata nº 1
+
+Data: 9/5/23
+Horário: 18h
+Local: IPCA
+
+Presentes: ALuno 18829 Miguel Silva e Aluno 18848 Andre Cardoso
+
+Ausentes: 
+
+Pauta:
+
+Enumeração das tarefas a relizar para o planeamento do projeto
+- Criação do RoadMap Inicial
+- Seleção/criação de repositorios de software
+- criação de um quadro e definição do backlog inicial
+- Rever e refinar os requisitos da aplicação
+- Criação de diagrama de dominio
+
+
+Nomeação do lider e secretario
+- ficou declarado que o lider para as primeiras duas semanas do projeto seria o Miguel Slva e o secretario o Andre Cardoso
+
+
+Observações/Decisões:
+
+Decisões: 
+    uso de  Quadro do JIRA para gerir as tarefas
+    uso do git hub como repositorio do software e documentos
+Atribuições
+    Miguel Silva - Criação do Jira
+    Andre Cardoso - Criação dos repositorios
+Sem observações relevantes
+Encerramento: 18h 30m
+
+Não havendo mais assuntos a tratar, a reunião foi encerrada às [Horário de Encerramento] horas.
+
+Assinaturas:
+
+a18829 Miguel Silva
+
+a18848 Andre Cardoso
