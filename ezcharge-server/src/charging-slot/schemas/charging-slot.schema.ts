@@ -1,41 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-
-export class Reservation {
-  @ApiProperty()
-  user: string;
-
-  @ApiProperty()
-  startTime: Date;
-
-  @ApiProperty()
-  endTime: Date;
-
-  @ApiProperty()
-  duration: number;
-
-  @ApiProperty()
-  totalPrice: number;
-
-  @ApiProperty()
-  transactionId: string;
-
-  @ApiProperty()
-  paymentMethodId: string;
-
-  @ApiProperty()
-  totalKW: number;
-
-  @ApiProperty()
-  pricePerKw: number;
-}
+import { Reservation } from '../../reservation/schemas/reservation.schema';
 
 @Schema()
 export class ChargingSlot extends Document {
   @ApiProperty()
   @Prop({ type: Reservation, default: {} })
-  reservation: Reservation[];
+  reservations: Reservation[];
 
   @ApiProperty()
   kwhCapacity: number;
