@@ -1,7 +1,8 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Prop } from '@nestjs/mongoose';
-
-export class CreateTransactionDto {
+@Schema()
+export class Transaction extends Document {
   @ApiProperty()
   @Prop({ required: true })
   timeStamp: Date;
@@ -14,3 +15,5 @@ export class CreateTransactionDto {
   @Prop({ required: true })
   type: string;
 }
+
+export const TransactionSchema = SchemaFactory.createForClass(Transaction);

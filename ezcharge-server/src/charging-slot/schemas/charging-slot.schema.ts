@@ -22,6 +22,9 @@ export class Reservation {
   transactionId: string;
 
   @ApiProperty()
+  paymentMethodId: string;
+
+  @ApiProperty()
   totalKW: number;
 
   @ApiProperty()
@@ -32,7 +35,7 @@ export class Reservation {
 export class ChargingSlot extends Document {
   @ApiProperty()
   @Prop({ type: Reservation, default: {} })
-  reservation: Reservation;
+  reservation: Reservation[];
 
   @ApiProperty()
   kwhCapacity: number;
