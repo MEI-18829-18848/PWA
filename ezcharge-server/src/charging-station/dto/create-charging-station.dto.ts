@@ -8,11 +8,16 @@ import {
 import { Type } from 'class-transformer';
 import { LocationDto } from './location.dto';
 import { OperationTimeDto } from './operation-time.dto';
+import { Prop } from '@nestjs/mongoose';
 
 export class CreateChargingStationDto {
   @ApiProperty()
   @IsNotEmpty()
   name: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  owner: string;
 
   @ApiProperty({ type: LocationDto })
   @ValidateNested()
@@ -23,23 +28,10 @@ export class CreateChargingStationDto {
   @IsNotEmpty()
   address: string;
 
-  @ApiProperty()
-  @IsNumber()
-  availableSlots: number;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsNumber()
-  totalSlots: number;
-
   @ApiProperty({ type: OperationTimeDto })
   @ValidateNested()
   @Type(() => OperationTimeDto)
   operationTime: OperationTimeDto;
-
-  @ApiProperty()
-  @IsBoolean()
-  maintenanceDetection: boolean;
 
   @ApiProperty()
   unavailability: {
@@ -47,8 +39,4 @@ export class CreateChargingStationDto {
     startTime: Date;
     endTime: Date;
   }[];
-
-  @ApiProperty()
-  @IsNotEmpty()
-  kWhCapacity: number;
 }

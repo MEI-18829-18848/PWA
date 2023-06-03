@@ -15,11 +15,17 @@ export class ReservationDto {
 
   @ApiProperty()
   @IsNumber()
-  @IsNotEmpty()
   duration: number;
 
   @ApiProperty()
   @IsNumber()
-  @IsNotEmpty()
   totalPrice: number;
+
+  @ApiProperty()
+  @IsNumber()
+  totalKW: number;
+
+  @ApiProperty()
+  @IsNumber()
+  pricePerKw: number;
 }

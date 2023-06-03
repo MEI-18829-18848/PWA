@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsNumber, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ReservationDto } from './reservation.dto';
 
@@ -10,6 +10,14 @@ export class CreateChargingSlotDto {
   reservation: ReservationDto;
 
   @ApiProperty()
-  @IsBoolean()
-  isAvailable: boolean;
+  @IsNumber()
+  kwhCapacity: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  plugType: string;
+
+  @ApiProperty()
+  @IsNumber()
+  pricePerKw: number;
 }

@@ -21,15 +21,11 @@ export class UpdateChargingStationDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  address: string;
-
-  @ApiProperty()
-  @IsNumber()
-  availableSlots: number;
+  owner: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  totalSlots: number;
+  address: string;
 
   @ApiProperty({ type: OperationTimeDto })
   @ValidateNested()
@@ -37,17 +33,9 @@ export class UpdateChargingStationDto {
   operationTime: OperationTimeDto;
 
   @ApiProperty()
-  @IsBoolean()
-  maintenanceDetection: boolean;
-
-  @ApiProperty()
   unavailability: {
     slotNumber: number;
     startTime: Date;
     endTime: Date;
   }[];
-
-  @ApiProperty()
-  @IsNotEmpty()
-  kWhCapacity: number;
 }

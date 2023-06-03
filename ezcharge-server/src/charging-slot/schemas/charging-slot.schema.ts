@@ -17,21 +17,31 @@ export class Reservation {
 
   @ApiProperty()
   totalPrice: number;
+
+  @ApiProperty()
+  transactionId: string;
+
+  @ApiProperty()
+  totalKW: number;
+
+  @ApiProperty()
+  pricePerKw: number;
 }
 
 @Schema()
 export class ChargingSlot extends Document {
   @ApiProperty()
-  @Prop({ default: false })
-  isOccupied: boolean;
-
-  @ApiProperty()
   @Prop({ type: Reservation, default: {} })
   reservation: Reservation;
 
   @ApiProperty()
-  @Prop({ default: true })
-  isAvailable: boolean;
+  kwhCapacity: number;
+
+  @ApiProperty()
+  plugType: string;
+
+  @ApiProperty()
+  pricePerKw: number;
 }
 
 export const ChargingSlotSchema = SchemaFactory.createForClass(ChargingSlot);

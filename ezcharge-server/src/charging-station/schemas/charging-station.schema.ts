@@ -28,6 +28,10 @@ export class ChargingStation extends Document {
   @Prop({ required: true })
   name: string;
 
+  @ApiProperty()
+  @Prop({ required: true })
+  owner: string;
+
   @ApiProperty({ type: Location })
   @Prop({
     type: {
@@ -46,14 +50,6 @@ export class ChargingStation extends Document {
   @Prop({ required: true })
   address: string;
 
-  @ApiProperty()
-  @Prop({ default: 0 })
-  availableSlots: number;
-
-  @ApiProperty()
-  @Prop({ required: true })
-  totalSlots: number;
-
   @ApiProperty({ type: [ChargingSlot] })
   @Prop({ type: [ChargingSlotSchema] })
   slots: ChargingSlot[];
@@ -61,10 +57,6 @@ export class ChargingStation extends Document {
   @ApiProperty({ type: OperationTime })
   @Prop({ type: OperationTime })
   operationTime: OperationTime;
-
-  @ApiProperty()
-  @Prop({ default: false })
-  maintenanceDetection: boolean;
 
   @ApiProperty()
   @Prop([
@@ -79,10 +71,6 @@ export class ChargingStation extends Document {
     startTime: Date;
     endTime: Date;
   }[];
-
-  @ApiProperty()
-  @Prop({ required: true })
-  kWhCapacity: number;
 }
 
 export const ChargingStationSchema =
