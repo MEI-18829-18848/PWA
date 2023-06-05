@@ -1,19 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
-import { ReservationDto } from './reservation.dto';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class UpdateChargingSlotDto {
   @ApiProperty()
-  @IsBoolean()
-  isOccupied: boolean;
+  @IsNumber()
+  kwhCapacity: number;
 
   @ApiProperty()
-  @ValidateNested()
-  @Type(() => ReservationDto)
-  reservation: ReservationDto;
+  @IsNotEmpty()
+  plugType: string;
 
   @ApiProperty()
-  @IsBoolean()
-  isAvailable: boolean;
+  @IsNumber()
+  pricePerKw: number;
 }

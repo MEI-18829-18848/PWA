@@ -60,7 +60,6 @@ export class ChargingSlotService {
     }
 
     const chargingSlot = new ChargingSlot(chargingSlotDto);
-    chargingSlot.isOccupied = false;
 
     chargingStation.slots.push(chargingSlot);
     await chargingStation.save();

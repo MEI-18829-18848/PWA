@@ -1,6 +1,8 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { CreateReservationDto } from './create-reservation.dto';
 import { IsNotEmpty, IsNumber } from 'class-validator';
-export class ReservationDto {
+
+export class UpdateReservationDto extends PartialType(CreateReservationDto) {
   @ApiProperty()
   @IsNotEmpty()
   user: string;
@@ -15,11 +17,17 @@ export class ReservationDto {
 
   @ApiProperty()
   @IsNumber()
-  @IsNotEmpty()
   duration: number;
 
   @ApiProperty()
   @IsNumber()
-  @IsNotEmpty()
   totalPrice: number;
+
+  @ApiProperty()
+  @IsNumber()
+  totalKW: number;
+
+  @ApiProperty()
+  @IsNumber()
+  pricePerKw: number;
 }
