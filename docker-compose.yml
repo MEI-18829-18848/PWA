@@ -34,13 +34,15 @@ services:
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
 
-  #auth-backend: 
-  #  build: 
-  #    context: ./auth
-  #  ports: 
-  #    - '8085:8085'
-  #  networks:
-  #    - ezcharge
+  auth-backend: 
+    build: 
+      context: ./auth
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres?currentSchema=auth
+    ports: 
+      - '8085:8085'
+    networks:
+      - ezcharge
 volumes:
   mongo_data:
 networks:
