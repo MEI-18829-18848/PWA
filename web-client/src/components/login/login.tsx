@@ -3,7 +3,7 @@ import 'antd/dist/reset.css';
 import './login.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import logo from '../assets/Logo.png'
+import logo from '../../assets/Logo.png'
 import {log} from "util";
 
 const LoginForm = () => {

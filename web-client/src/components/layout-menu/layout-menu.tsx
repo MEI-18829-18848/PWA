@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {Layout, Menu, theme} from 'antd';
 import {Outlet} from "react-router-dom";
 import GetMenuItems from "./menu-item";
+import './layout-menu.css'
+import logo from '../../assets/Logo.png'
+import {log} from "util";
 
 const {
     Header,
@@ -10,36 +13,34 @@ const {
     Sider
 } = Layout;
 
-const SideMenu: React.FC = () => {
+const LayoutMenu: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: {colorBgContainer},
-    } = theme.useToken();
 
     const [headerString, setHeaderString] = useState("");
     const [menuItems, setMenuItems] = useState(GetMenuItems())
 
 
     return (
-        <Layout style={{minHeight: '100vh'}}>
+        <Layout className="layout">
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} theme="light">
-                <div className="demo-logo-vertical"/>
+                <div className="menu-logo">
+                    <img src={logo} alt="logo"/>
+                </div>
                 <Menu theme="light" defaultSelectedKeys={['1']} mode="inline" items={menuItems}/>
             </Sider>
-            <Layout >
-                <Header style={{padding: 0, background: colorBgContainer}}>
+            <Layout>
+                <Header className="layout-header">
                     <h1>{headerString}</h1>
                 </Header>
-                <Content style={{margin: '0 16px'}}>
-
-                    <div style={{padding: 24, minHeight: 360, background: colorBgContainer, marginTop: 20}}>
+                <Content className="content-container">
+                    <div className="content">
                         <Outlet/>
                     </div>
                 </Content>
-                <Footer style={{textAlign: 'center'}}>EzCharge ©2023 Created with Ant Design</Footer>
+                <Footer className="footer-text">EzCharge ©2023 Created with Ant Design</Footer>
             </Layout>
         </Layout>
     );
 };
 
-export default SideMenu;
+export default LayoutMenu;
