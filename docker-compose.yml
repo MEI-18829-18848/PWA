@@ -1,6 +1,20 @@
 version: '3.1'
 
 services:
+  db:
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./db-data:/var/lib/postgresql/data
+          # copy the sql script to create tables
+      - ./bd.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    networks:
+        - ezcharge
   mongo:
     image: mongo
     restart: always
@@ -19,5 +33,15 @@ services:
       - 8081:8081
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+
+  #auth-backend: 
+  #  build: 
+  #    context: ./auth
+  #  ports: 
+  #    - '8085:8085'
+  #  networks:
+  #    - ezcharge
 volumes:
   mongo_data:
+networks:
+  ezcharge:  
