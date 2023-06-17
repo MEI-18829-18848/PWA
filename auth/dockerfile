@@ -1,0 +1,5 @@
+FROM openjdk:17-jdk-slim
+WORKDIR app
+EXPOSE 8085
+COPY target/auth-*.jar exec.jar
+ENTRYPOINT ["java", "-jar", "exec.jar" ]
