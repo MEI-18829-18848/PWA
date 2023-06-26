@@ -5,6 +5,7 @@ import {
   ChargingSlot,
   ChargingSlotSchema,
 } from '../../charging-slot/schemas/charging-slot.schema';
+import { LocationDto } from '../dto/location.dto';
 
 class OperationTime {
   @ApiProperty()
@@ -14,16 +15,12 @@ class OperationTime {
   end: string;
 }
 
-class Location {
-  @ApiProperty()
-  type: string;
-
-  @ApiProperty()
-  coordinates: number[];
-}
-
 @Schema()
 export class ChargingStation extends Document {
+  @ApiProperty()
+  @Prop({type: Buffer, default:null})
+  image: Buffer
+
   @ApiProperty()
   @Prop({ required: true })
   name: string;
@@ -32,7 +29,7 @@ export class ChargingStation extends Document {
   @Prop({ required: true })
   owner: string;
 
-  @ApiProperty({ type: Location })
+  @ApiProperty({ type: LocationDto })
   @Prop({
     type: {
       type: String,
@@ -44,7 +41,7 @@ export class ChargingStation extends Document {
       required: true,
     },
   })
-  location: Location;
+  location: LocationDto;
 
   @ApiProperty()
   @Prop({ required: true })
@@ -71,6 +68,16 @@ export class ChargingStation extends Document {
     startTime: Date;
     endTime: Date;
   }[];
+
+  // slot properties
+  @ApiProperty()
+  kwhCapacity: number;
+
+  @ApiProperty()
+  plugType: string;
+
+  @ApiProperty()
+  pricePerKw: number;
 }
 
 export const ChargingStationSchema =
