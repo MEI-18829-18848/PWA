@@ -31,6 +31,7 @@ public class TokenService {
                 .expiresAt(now.plus(1, ChronoUnit.HOURS)) //validade do token
                 .claim("scope", scope)
                 .claim("username", userDetails.getUsername())
+                .claim("email", userDetails.getEmail())
                 .claim("user_id", userDetails.getUserId())
                 .build();
         return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

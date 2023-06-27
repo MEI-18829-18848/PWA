@@ -25,6 +25,10 @@ public class SecurityUser implements UserDetails {
         return user.getPassword();
     }
 
+    public String getEmail() {
+        return user.getEmail();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(user
