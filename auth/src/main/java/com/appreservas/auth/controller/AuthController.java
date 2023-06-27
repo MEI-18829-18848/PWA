@@ -81,9 +81,16 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity createUser(@RequestBody User newUser) {
-        newUser.setPassword(encoder.encode(newUser.getPassword()));
-        User userCreated = userRepository.save(newUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userCreated.toString());
+        Optional<User> existingUser = userRepository.findByUsername(newUser.getUsername());
+
+        if (existingUser.isPresent()) {
+            // User already exists
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
+        } else {
+            newUser.setPassword(encoder.encode(newUser.getPassword()));
+            User userCreated = userRepository.save(newUser);
+            return ResponseEntity.status(HttpStatus.CREATED).body(userCreated.toString());
+        }
     }
     
     @PostMapping("/forgotpassword")
