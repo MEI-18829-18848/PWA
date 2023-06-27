@@ -12,19 +12,20 @@ export class ChargingStationService {
     private chargingStationModel: Model<ChargingStation>
   ) {}
 
-  async uploadImage(id:String, buffer: Buffer){
+  async uploadImage(id:string, buffer: Buffer, mimeType: string){
     return this.chargingStationModel.findById(id).exec().then((res) => {
       if(res){
-        res.image = buffer;  
+        res.image = buffer;
+        res.mimeType = mimeType;  
         return res.save();
       }
     });
   }
 
-  async retrieveImage(id: String): Promise<Buffer> {
+  async downloadImage(id: string): Promise<ChargingStation> {
     return this.chargingStationModel.findById(id).exec().then((res) => {
       if(res !== undefined && res.image !== undefined) 
-        return res. image;
+        return res;
       return null;
     });
   }

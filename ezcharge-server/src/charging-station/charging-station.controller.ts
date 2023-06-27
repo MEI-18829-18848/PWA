@@ -25,29 +25,62 @@ export class ChargingStationController {
   constructor(private chargingStationService: ChargingStationService) {}
 
   @Get('image/:id')
-  async downloadImage(@Param('id') id: string, @Res() res: Response) {
-    const file = await this.chargingStationService.retrieveImage(id);
+  downloadImage(@Param('id') id: string, @Res() response: Response) {
+    this.chargingStationService.downloadImage(id).then((res) => {
+      if (!res) {
+        // Handle file not found case
+        return response.status(HttpStatus.NOT_FOUND).send('File not found');
+      }
 
-    if (!file) {
-      // Handle file not found case
-      return res.status(HttpStatus.NOT_FOUND).send('File not found');
-    }
+      var extension: string;
+      switch (res.mimeType) {
+        case 'image/jpeg':
+          extension = 'jpg';
+          break;
+        case 'image/png':
+          extension = 'png';
+          break;
+        case 'image/svg+xml':
+          extension = 'svg';
+          break;
+        case 'image/webp':
+          extension = 'webp';
+          break;
+      }
 
-    // Set the appropriate headers for file download
-    res.setHeader('Content-Type', 'image/jpeg');
-    res.setHeader('Content-Disposition', `attachment; filename="station-image"`);
+      // Set the appropriate headers for file download
+      response.setHeader('Content-Type', res.mimeType);
+      response.setHeader(
+        'Content-Disposition',
+        `attachment; filename="station-image.${extension}"`,
+      );
 
-    // Send the file content as the response
-    res.send(file);
+      // Send the file content as the response
+      response.send(res.image);
+    });
   }
 
-  @Post('file/:id')
+  @Patch('image/:id')
   @UseInterceptors(FileInterceptor('file'))
   uploadImage(
-    @Param('id') id: String,
+    @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
+    @Res() res: Response,
   ) {
-    return this.chargingStationService.uploadImage(id, file.buffer);
+    switch (file.mimetype) {
+      case 'image/jpeg':
+      case 'image/png':
+      case 'image/svg+xml':
+      case 'image/webp':
+        break;
+      default:
+        return res.status(415).send('Unsupported Media Type');
+    }
+    return this.chargingStationService.uploadImage(
+      id,
+      file.buffer,
+      file.mimetype,
+    );
   }
 
   @Get()
@@ -67,7 +100,7 @@ export class ChargingStationController {
   @ApiOperation({ summary: 'Create a new charging station' })
   @ApiBody({ type: CreateChargingStationDto })
   create(
-    @Body() chargingStation: CreateChargingStationDto
+    @Body() chargingStation: CreateChargingStationDto,
   ): Promise<ChargingStation> {
     return this.chargingStationService.create(chargingStation);
   }

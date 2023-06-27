@@ -22,6 +22,10 @@ export class ChargingStation extends Document {
   image: Buffer
 
   @ApiProperty()
+  @Prop({type: String, default: null})
+  mimeType: string
+
+  @ApiProperty()
   @Prop({ required: true })
   name: string;
 
