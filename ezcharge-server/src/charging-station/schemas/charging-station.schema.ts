@@ -18,12 +18,12 @@ class OperationTime {
 @Schema()
 export class ChargingStation extends Document {
   @ApiProperty()
-  @Prop({type: Buffer, default:null})
-  image: Buffer
+  @Prop({ type: Buffer, default: null })
+  image: Buffer;
 
   @ApiProperty()
-  @Prop({type: String, default: null})
-  mimeType: string
+  @Prop({ type: String, default: null })
+  mimeType: string;
 
   @ApiProperty()
   @Prop({ required: true })

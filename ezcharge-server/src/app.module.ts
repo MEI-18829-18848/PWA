@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PaymentMethodModule } from './payment-method/payment-method.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { ReservationModule } from './reservation/reservation.module';
+import { NotificationModule } from './notfication/notfication.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ReservationModule } from './reservation/reservation.module';
     PaymentMethodModule,
     TransactionModule,
     ReservationModule,
+    NotificationModule,
   ],
 })
 export class AppModule {}

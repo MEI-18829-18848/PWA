@@ -9,37 +9,42 @@ import { UpdateChargingStationDto } from './dto/update-charging-station.dto';
 export class ChargingStationService {
   constructor(
     @InjectModel(ChargingStation.name)
-    private chargingStationModel: Model<ChargingStation>
+    private chargingStationModel: Model<ChargingStation>,
   ) {}
 
-  async uploadImage(id:string, buffer: Buffer, mimeType: string){
-    return this.chargingStationModel.findById(id).exec().then((res) => {
-      if(res){
-        res.image = buffer;
-        res.mimeType = mimeType;  
-        return res.save();
-      }
-    });
+  async uploadImage(id: string, buffer: Buffer, mimeType: string) {
+    return this.chargingStationModel
+      .findById(id)
+      .exec()
+      .then((res) => {
+        if (res) {
+          res.image = buffer;
+          res.mimeType = mimeType;
+          return res.save();
+        }
+      });
   }
 
   async downloadImage(id: string): Promise<ChargingStation> {
-    return this.chargingStationModel.findById(id).exec().then((res) => {
-      if(res !== undefined && res.image !== undefined) 
-        return res;
-      return null;
-    });
+    return this.chargingStationModel
+      .findById(id)
+      .exec()
+      .then((res) => {
+        if (res !== undefined && res.image !== undefined) return res;
+        return null;
+      });
   }
 
   async findAll(): Promise<ChargingStation[]> {
     return this.chargingStationModel.find().exec();
   }
 
-  async findById(id: String): Promise<ChargingStation> {
+  async findById(id: string): Promise<ChargingStation> {
     return this.chargingStationModel.findById(id).exec();
   }
 
   async create(
-    chargingStationDto: CreateChargingStationDto
+    chargingStationDto: CreateChargingStationDto,
   ): Promise<ChargingStation> {
     return new this.chargingStationModel(chargingStationDto).save();
   }

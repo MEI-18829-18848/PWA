@@ -32,7 +32,7 @@ export class ChargingStationController {
         return response.status(HttpStatus.NOT_FOUND).send('File not found');
       }
 
-      var extension: string;
+      let extension: string;
       switch (res.mimeType) {
         case 'image/jpeg':
           extension = 'jpg';
@@ -92,7 +92,7 @@ export class ChargingStationController {
   @Get(':id')
   @ApiOperation({ summary: 'Get a charging station by ID' })
   @ApiParam({ name: 'id', description: 'Charging Station ID' })
-  findById(@Param('id') id: String): Promise<ChargingStation> {
+  findById(@Param('id') id: string): Promise<ChargingStation> {
     return this.chargingStationService.findById(id);
   }
 
