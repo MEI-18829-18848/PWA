@@ -27,9 +27,6 @@ export class Notification {
   @Prop()
   body: string;
 
-  @Prop()
-  userTokens: Record<string, string>;
-
   @Prop({ default: Date.now })
   createdAt: Date;
 }

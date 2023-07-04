@@ -1,9 +1,17 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateNotificationDto {
-  readonly title: string;
-  readonly body: string;
+  @ApiProperty()
+  title: string;
+
+  @ApiProperty()
+  body: string;
 }
 
 export class CreatePushTokenDto {
-  readonly userId: number;
-  readonly pushToken: string;
+  @ApiProperty()
+  userId: number;
+
+  @ApiProperty()
+  pushToken: string;
 }
