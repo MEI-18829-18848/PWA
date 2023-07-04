@@ -6,12 +6,15 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { ChargingSlotService } from './charging-slot.service';
 import { ChargingSlot } from './schemas/charging-slot.schema';
 import { ApiTags, ApiOperation, ApiParam, ApiBody } from '@nestjs/swagger';
 import { CreateChargingSlotDto } from './dto/create-charging-slot.dto';
 import { UpdateChargingSlotDto } from './dto/update-charging-slot.dto';
+import { AdminGuard } from '../auth/admin-guard/admin.guard';
+import { UserGuard } from '../auth/user/user.guard';
 
 @Controller('charging-stations')
 @ApiTags('Charging Stations')
@@ -19,6 +22,7 @@ export class ChargingSlotController {
   constructor(private chargingSlotService: ChargingSlotService) {}
 
   @Get('/:id/slots')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Find all charging slots from a station' })
   @ApiParam({ name: 'id', description: 'Station ID' })
   findAllFromPostID(@Param('id') id: string): Promise<ChargingSlot[]> {
@@ -26,6 +30,7 @@ export class ChargingSlotController {
   }
 
   @Get('/:id/slots/:slot_id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Find a charging slot by ID' })
   @ApiParam({ name: 'id', description: 'Station ID' })
   @ApiParam({ name: 'slot_id', description: 'Slot ID' })
@@ -37,6 +42,7 @@ export class ChargingSlotController {
   }
 
   @Post('/:id/slots')
+  @UseGuards(AdminGuard)
   @ApiOperation({ summary: 'Create a new charging slot' })
   @ApiParam({ name: 'id', description: 'Station ID' })
   @ApiBody({ type: CreateChargingSlotDto })
@@ -48,6 +54,7 @@ export class ChargingSlotController {
   }
 
   @Patch('/:id/slots/:slot_id')
+  @UseGuards(AdminGuard)
   @ApiOperation({ summary: 'Update a charging slot' })
   @ApiParam({ name: 'id', description: 'Station ID' })
   @ApiParam({ name: 'slot_id', description: 'Slot ID' })
@@ -61,6 +68,7 @@ export class ChargingSlotController {
   }
 
   @Delete('/:id/slots/:slot_id')
+  @UseGuards(AdminGuard)
   @ApiOperation({ summary: 'Delete a charging slot' })
   @ApiParam({ name: 'id', description: 'Station ID' })
   @ApiParam({ name: 'slot_id', description: 'Slot ID' })
