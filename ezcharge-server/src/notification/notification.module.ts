@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { NotificationController } from './notfication.controller';
+import { NotificationController } from './notification.controller';
 import {
   Notification,
   NotificationSchema,
 } from './schemas/notification.schema';
 import { User, UserSchema } from './schemas/notification.schema';
-import { NotificationService } from './notfication.service';
-import { UserService } from './notfication.service';
+import { NotificationService } from './notification.service';
+import { UserService } from './notification.service';
 import { FirebaseService } from './firebase.service';
 
 @Module({

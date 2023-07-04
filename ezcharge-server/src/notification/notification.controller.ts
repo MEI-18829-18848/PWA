@@ -1,9 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateNotificationDto } from './dto/create-notfication.dto';
-import { CreatePushTokenDto } from './dto/create-notfication.dto';
+import { CreateNotificationDto } from './dto/create-notification.dto';
+import { CreatePushTokenDto } from './dto/create-notification.dto';
 import { FirebaseService } from './firebase.service';
-import { NotificationService } from './notfication.service';
-import { UserService } from './notfication.service';
+import { NotificationService } from './notification.service';
+import { UserService } from './notification.service';
 
 @Controller('notifications')
 export class NotificationController {
