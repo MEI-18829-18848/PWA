@@ -6,6 +6,7 @@ import { PaymentMethodModule } from './payment-method/payment-method.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { NotificationModule } from './notfication/notfication.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { NotificationModule } from './notfication/notfication.module';
     TransactionModule,
     ReservationModule,
     NotificationModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

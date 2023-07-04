@@ -1,13 +1,9 @@
 import { Module } from '@nestjs/common';
-import { PaymentMethodService } from './payment-method.service';
-import { PaymentMethodController } from './payment-method.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import {
-  PaymentMethod,
-  PaymentMethodSchema,
-} from './schemas/payment-method.schema';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthModule } from '../auth/auth.module';
+import { AdminGuard } from './admin-guard/admin.guard';
+import * as fs from 'fs';
+import * as path from 'path';
+import { UserGuard } from './user/user.guard';
 
 @Module({
   imports: [
@@ -24,12 +20,8 @@ import { AuthModule } from '../auth/auth.module';
         '-----END PUBLIC KEY-----',
       signOptions: { expiresIn: '1h', algorithm: 'RS256' },
     }),
-    AuthModule,
-    MongooseModule.forFeature([
-      { name: PaymentMethod.name, schema: PaymentMethodSchema },
-    ]),
   ],
-  controllers: [PaymentMethodController],
-  providers: [PaymentMethodService],
+  providers: [AdminGuard, UserGuard],
+  exports: [AdminGuard, UserGuard],
 })
-export class PaymentMethodModule {}
+export class AuthModule {}

@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { UserGuard } from '../auth/user/user.guard';
 
 @Controller('payment-method')
 @ApiTags('Transactions')
@@ -18,6 +20,7 @@ export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 
   @Post(':pm_id/transaction')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Create a transaction' })
   @ApiParam({ name: 'pm_id', description: 'The ID of the payment method' })
   create(
@@ -31,6 +34,7 @@ export class TransactionController {
   }
 
   @Get(':pm_id/transaction')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Get all transactions' })
   @ApiParam({ name: 'pm_id', description: 'The ID of the payment method' })
   findAll(@Param('pm_id') paymentMethodId: string) {
@@ -38,6 +42,7 @@ export class TransactionController {
   }
 
   @Get(':pm_id/transaction/:id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Get a transaction by ID' })
   @ApiParam({ name: 'pm_id', description: 'The ID of the payment method' })
   @ApiParam({ name: 'id', description: 'The ID of the transaction' })
@@ -46,6 +51,7 @@ export class TransactionController {
   }
 
   @Patch(':pm_id/transaction/:id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Update a transaction' })
   @ApiParam({ name: 'pm_id', description: 'The ID of the payment method' })
   @ApiParam({ name: 'id', description: 'The ID of the transaction' })
@@ -62,6 +68,7 @@ export class TransactionController {
   }
 
   @Delete(':pm_id/transaction/:id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Delete a transaction' })
   @ApiParam({ name: 'pm_id', description: 'The ID of the payment method' })
   @ApiParam({ name: 'id', description: 'The ID of the transaction' })
