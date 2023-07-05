@@ -1,0 +1,19 @@
+.slot-view-container {
+    padding: 20px;
+}
+
+.slot-view-container h1 {
+    margin-bottom: 20px;
+}
+
+.slot-view-container .ant-table {
+    margin-top: 20px;
+}
+
+.slot-view-container .ant-modal {
+    padding: 20px;
+}
+
+.slot-view-container .ant-time-picker {
+    margin-bottom: 10px;
+}

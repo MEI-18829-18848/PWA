@@ -6,7 +6,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Disable CORS
-  app.enableCors();
+  app.enableCors({
+    origin:'*'
+    }); 
 
   const config = new DocumentBuilder()
     .setTitle('EzCharge')

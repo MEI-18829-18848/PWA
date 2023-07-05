@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import {redirect, useNavigate} from "react-router-dom";
 
-const API_URL = 'https://4c0a-2001-818-df4b-e100-e0b3-c4b1-7479-6f30.ngrok-free.app'; // Replace with your API URL
+const API_URL = 'http://localhost:8085'; // Replace with your API URL
 
 interface TokenClaims {
     user_id: number;

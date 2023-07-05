@@ -1,9 +1,9 @@
 .footer-text {
-    textAlign: 'center'
+    text-align: center;
 }
 
 .layout {
-    minHeight: '100vh'
+    min-height: 100vh;
 }
 
 .layout-header {
@@ -12,19 +12,21 @@
 }
 
 .content-container {
-    minHeight: '100vh'
+    margin: 0 16px;
 }
 
 .content {
-    padding: 24%;
-    minHeight: 360;
-    marginTop: 20;
+    padding: 24px;
+    min-height: 360px;
+    margin-top: 20px;
+    background: #fff;
 }
 
 .menu-logo {
-    padding: 5%;
-
+    padding: 16px;
+    text-align: center;
 }
+
 .menu-logo img {
     max-width: 100%;
 }

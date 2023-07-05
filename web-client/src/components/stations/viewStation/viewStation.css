@@ -1,0 +1,22 @@
+.station-view-container {
+    padding: 20px;
+    margin: 40px auto;
+}
+
+.station-view-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.station-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.station-view-container .ant-form-item {
+    margin-right: 20px;
+}
+
+.station-view-container .ant-time-picker {
+    width: 100px;
+}

@@ -39,4 +39,16 @@ export class CreateChargingStationDto {
     startTime: Date;
     endTime: Date;
   }[];
+
+  @ApiProperty()
+  @IsNumber()
+  kwhCapacity: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  plugType: string;
+
+  @ApiProperty()
+  @IsNumber()
+  pricePerKw: number;
 }

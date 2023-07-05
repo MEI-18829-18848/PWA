@@ -1,5 +1,12 @@
-const Dashboard = () => {
-    return <div>Test asdsadsas</div>
-}
+import React from 'react';
 
-export default Dashboard
+const Dashboard: React.FC = () => {
+    return (
+        <div>
+            <h2>Dashboard</h2>
+            <p>This is the Dashboard page.</p>
+        </div>
+    );
+};
+
+export default Dashboard;

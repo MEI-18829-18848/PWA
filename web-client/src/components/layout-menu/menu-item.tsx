@@ -1,37 +1,20 @@
 import React from "react";
-import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
-import {MenuProps} from "antd";
+import { DesktopOutlined, PieChartOutlined, BellOutlined } from "@ant-design/icons";
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-): MenuItem {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    } as MenuItem;
-}
+type MenuItem = {
+    key: React.Key;
+    icon?: React.ReactNode;
+    label: React.ReactNode;
+};
 
 const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined/>),
-    getItem('Option 2', '2', <DesktopOutlined/>),
-    getItem('User', 'sub1', <UserOutlined/>, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined/>, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined/>),
+    { key: '/dashboard', icon: <PieChartOutlined />, label: 'Dashboard' },
+    { key: '/stations', icon: <DesktopOutlined />, label: 'Stations' },
+    { key: '/notifications', icon: <BellOutlined />, label: 'Notifications' },
 ];
 
 const GetMenuItems = () => {
-    return items
-}
+    return items;
+};
 
-export default GetMenuItems
+export default GetMenuItems;

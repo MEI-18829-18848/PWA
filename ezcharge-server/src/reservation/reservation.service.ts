@@ -34,12 +34,15 @@ export class ReservationService {
       throw new NotFoundException('Slot not found');
     }
 
-    const reservation: Reservation = new Reservation(createReservationDto);
+    const reservation: Reservation = new this.reservationModel(createReservationDto);
 
     slot.reservations.push(reservation);
+    await chargingStation.save();
 
     return reservation;
   }
+
+
 
   async findAll(stationId: string, slotId: string): Promise<Reservation[]> {
     const chargingStation = await this.chargingStationModel
