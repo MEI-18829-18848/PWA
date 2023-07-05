@@ -5,7 +5,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import logo from '../assets/Logo.png';
 import { useNavigate } from "react-router-dom";
-import {login} from "../services/auth.service";
+import {login} from "../../services/auth.service";
 
 interface InputFieldProps {
     name: string;
@@ -28,8 +28,8 @@ const LoginForm: React.FC = () => {
         console.log('Received values of form: ', values);
         // Add your login logic here
         try {
-           if (await login(values.username, values.password) != null)
-               navigate('/dashboard')
+            if (await login(values.username, values.password) != null)
+                navigate('/dashboard')
         } catch (error) {
             console.error('Login error:', error);
             // Handle the error, e.g., show an error message to the user.

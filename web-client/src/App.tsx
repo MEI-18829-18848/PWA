@@ -1,12 +1,14 @@
 import React from 'react';
-import type { FC } from 'react';
+import type {FC} from 'react';
 import 'antd/dist/reset.css';
 import './App.css';
-import LoginForm from "./login/login";
+import LoginForm from "./components/login/login";
 import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom";
 import {RequireAuth} from "./routes/RequireAuth";
-import RegisterForm from "./register/register";
-import Dashboard from "./dashboard/dashboard";
+import LayoutMenu from "./components/layout-menu/layout-menu";
+import {Switch} from "antd";
+import Dashboard from "./components/dashboard/dashboard";
+import RegisterForm from "./components/register/register";
 
 const App: FC = () => (
     <div className="App">
@@ -14,14 +16,14 @@ const App: FC = () => (
             <Routes>
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/register" element={<RegisterForm />} />
-                <Route
-                    path="/dashboard"
-                    element={
-                        <RequireAuth>
+                <Route element={<RequireAuth><LayoutMenu/></RequireAuth>}>
+                    <Route
+                        path="/dashboard"
+                        element={
                             <Dashboard></Dashboard>
-                        </RequireAuth>
-                    }
-                />
+                        }
+                    />
+                </Route>
                 <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
         </BrowserRouter>

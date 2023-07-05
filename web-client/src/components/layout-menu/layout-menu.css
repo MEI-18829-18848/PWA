@@ -1,0 +1,30 @@
+.footer-text {
+    textAlign: 'center'
+}
+
+.layout {
+    minHeight: '100vh'
+}
+
+.layout-header {
+    padding: 0;
+    background-color: white;
+}
+
+.content-container {
+    minHeight: '100vh'
+}
+
+.content {
+    padding: 24%;
+    minHeight: 360;
+    marginTop: 20;
+}
+
+.menu-logo {
+    padding: 5%;
+
+}
+.menu-logo img {
+    max-width: 100%;
+}

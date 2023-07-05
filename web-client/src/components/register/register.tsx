@@ -3,9 +3,9 @@ import 'antd/dist/reset.css';
 import './register.css';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
-import logo from '../assets/Logo.png';
+import logo from '../../assets/Logo.png';
 import { useNavigate } from "react-router-dom";
-import {login, register} from "../services/auth.service";
+import {login, register} from "../../services/auth.service";
 
 interface InputFieldProps {
     name: string;
