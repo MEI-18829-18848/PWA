@@ -1,14 +1,18 @@
 import { useLocation, Navigate } from "react-router-dom";
 
-import {getCurrentUser} from "../services/auth.service";
+import {getCurrentToken, isTokenExpired} from "../services/auth.service";
 
 export function RequireAuth({ children }: { children: JSX.Element }) {
-    let user = getCurrentUser()
+    let token = getCurrentToken()
     let location = useLocation();
 
-    if (!user) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
-    } else {
-        return children;
+    if (token == null) {
+        console.log('Hello')
+        return <Navigate to="/login" state={{from: location}} replace/>;
+
+    }else if (isTokenExpired(token)){
+        console.log('Hello2222')
+        return <Navigate to="/login" state={{from: location}} replace/>;
     }
+    return children;
 }
