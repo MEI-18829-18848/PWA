@@ -6,10 +6,10 @@ export function RequireAuth({ children }: { children: JSX.Element }) {
     let token = getCurrentToken()
     let location = useLocation();
 
-    if (!token) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
-    } else if(isTokenExpired(token)){
-        return <Navigate to="/login" state={{ from: location }} replace />;
+    if (token == null) {
+        return <Navigate to="/login" state={{from: location}} replace/>;
+    }else if (isTokenExpired(token)){
+        return <Navigate to="/login" state={{from: location}} replace/>;
     }
 
     return children;
