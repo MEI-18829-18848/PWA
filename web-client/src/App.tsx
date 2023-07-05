@@ -8,12 +8,14 @@ import {RequireAuth} from "./routes/RequireAuth";
 import LayoutMenu from "./components/layout-menu/layout-menu";
 import {Switch} from "antd";
 import Dashboard from "./components/dashboard/dashboard";
+import RegisterForm from "./components/register/register";
 
 const App: FC = () => (
     <div className="App">
         <BrowserRouter>
             <Routes>
-                <Route path="/login" element={<LoginForm/>}/>
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterForm />} />
                 <Route element={<RequireAuth><LayoutMenu/></RequireAuth>}>
                     <Route
                         path="/dashboard"
@@ -22,7 +24,7 @@ const App: FC = () => (
                         }
                     />
                 </Route>
-                <Route path="*" element={<Navigate to="/dashboard" replace/>}/>
+                <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
         </BrowserRouter>
     </div>

@@ -1,4 +1,4 @@
-.login-form {
+.register-form {
     max-width: 300px;
     background-color: #ffffff;
     padding: 30px;
@@ -6,15 +6,11 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-form-forgot {
-    float: right;
-}
-
-.login-form-button {
+.register-form-button {
     width: 100%;
 }
 
-.login-form-container {
+.register-form-container {
     background-color: #125570;
     display: flex;
     justify-content: center;
@@ -30,6 +26,6 @@
     margin-right: auto;
 }
 
-.login-form-inputs {
+.register-form-inputs {
     margin-bottom: 20px;
 }
