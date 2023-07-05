@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UserGuard } from '../auth/user/user.guard';
 
 @Controller('charging-stations')
 @ApiTags('Reservations')
@@ -18,6 +20,7 @@ export class ReservationController {
   constructor(private readonly reservationService: ReservationService) {}
 
   @Post('/:station_id/slots/:slot_id/reservations')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Create a reservation' })
   create(
     @Param('station_id') stationId: string,
@@ -32,6 +35,7 @@ export class ReservationController {
   }
 
   @Get('/:station_id/slots/:slot_id/reservations')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Get all reservations' })
   findAll(
     @Param('station_id') stationId: string,
@@ -41,6 +45,7 @@ export class ReservationController {
   }
 
   @Get('/:station_id/slots/:slot_id/reservations/:reservation_id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Get a reservation by ID' })
   findOne(
     @Param('station_id') stationId: string,
@@ -51,6 +56,7 @@ export class ReservationController {
   }
 
   @Patch('/:station_id/slots/:slot_id/reservations/:reservation_id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Update a reservation' })
   update(
     @Param('station_id') stationId: string,
@@ -67,6 +73,7 @@ export class ReservationController {
   }
 
   @Delete('/:station_id/slots/:slot_id/reservations/:reservation_id')
+  @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Delete a reservation' })
   remove(
     @Param('station_id') stationId: string,
