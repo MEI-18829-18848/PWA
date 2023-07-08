@@ -8,12 +8,17 @@ import {
 @Schema()
 export class PaymentMethod extends Document {
   @ApiProperty()
-  @Prop({ required: true })
+  @Prop({ required: false })
   user: string;
 
   @ApiProperty()
   @Prop({ required: true })
   cardNumber: string;
+
+  @ApiProperty()
+  @Prop({ required: true })
+  cardName: string;
+
 
   @ApiProperty()
   @Prop({ required: true })

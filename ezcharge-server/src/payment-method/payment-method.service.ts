@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { CreatePaymentMethodDto } from './dto/create-payment-method.dto';
 import { UpdatePaymentMethodDto } from './dto/update-payment-method.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -12,32 +12,47 @@ export class PaymentMethodService {
     private paymentMethodModel: Model<PaymentMethod>,
   ) {}
 
-  async findAll(): Promise<PaymentMethod[]> {
-    return this.paymentMethodModel.find().exec();
+  async findAll(user: string): Promise<PaymentMethod[]> {
+    return this.paymentMethodModel.find({ user }).exec();
   }
 
-  async findById(id: string): Promise<PaymentMethod> {
-    return this.paymentMethodModel.findById(id).exec();
-  }
+  async findById(user: string, id: string): Promise<PaymentMethod> {
+    const paymentMethod = await this.paymentMethodModel.findOne({ _id: id, user }).exec();
 
+    if (!paymentMethod) {
+      throw new NotFoundException('Payment method not found');
+    }
+
+    return paymentMethod;
+  }
   async create(
+    user: string,
     paymentMethodDto: CreatePaymentMethodDto,
   ): Promise<PaymentMethod> {
-    const paymentMethod = new PaymentMethod(paymentMethodDto);
-    const createdStation = new this.paymentMethodModel(paymentMethod);
-    return createdStation.save();
+    paymentMethodDto.user = user
+    const createdPaymentMethod = new this.paymentMethodModel(paymentMethodDto);
+    return createdPaymentMethod.save();
   }
 
   async update(
+    user: string,
     id: string,
-    paymentMethod: UpdatePaymentMethodDto,
+    updatePaymentMethodDto: UpdatePaymentMethodDto,
   ): Promise<PaymentMethod> {
-    return this.paymentMethodModel
-      .findByIdAndUpdate(id, paymentMethod, { new: true })
-      .exec();
+    const paymentMethod = await this.findById(user, id); // use the modified findById
+
+    updatePaymentMethodDto.user = user
+    paymentMethod.cardName = updatePaymentMethodDto.cardName
+    paymentMethod.cardNumber = updatePaymentMethodDto.cardNumber
+    paymentMethod.defaultMethod = updatePaymentMethodDto.defaultMethod
+
+    await paymentMethod.save()
+    return paymentMethod
   }
 
-  async delete(id: string): Promise<PaymentMethod> {
+  async delete(user: string, id: string): Promise<PaymentMethod> {
+    const paymentMethod = await this.findById(user, id); // use the modified findById
+
     return this.paymentMethodModel.findByIdAndRemove(id).exec();
   }
 }

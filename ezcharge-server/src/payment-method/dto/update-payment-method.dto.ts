@@ -11,6 +11,10 @@ export class UpdatePaymentMethodDto extends PartialType(
 
   @ApiProperty()
   @IsNotEmpty()
+  cardName: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   cardNumber: string;
 
   @ApiProperty()

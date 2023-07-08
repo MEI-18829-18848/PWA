@@ -15,5 +15,4 @@ export class Transaction extends Document {
   @Prop({ required: true })
   type: string;
 }
-
 export const TransactionSchema = SchemaFactory.createForClass(Transaction);

@@ -4,12 +4,14 @@ import { TransactionController } from './transaction.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Transaction, TransactionSchema } from './schemas/transaction.schema';
 import { PaymentMethodModule } from '../payment-method/payment-method.module';
-import {
-  PaymentMethod,
-  PaymentMethodSchema,
-} from '../payment-method/schemas/payment-method.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from '../auth/auth.module';
+import { ReservationModule } from "../reservation/reservation.module";
+import { Reservation, ReservationSchema } from "../reservation/schemas/reservation.schema";
+import { PaymentMethod, PaymentMethodSchema } from "../payment-method/schemas/payment-method.schema";
+import { ChargingStation, ChargingStationSchema } from "../charging-station/schemas/charging-station.schema";
+import { ChargingSlot, ChargingSlotSchema } from "../charging-slot/schemas/charging-slot.schema";
+import { ReservationService } from "../reservation/reservation.service";
 
 @Module({
   imports: [
@@ -27,9 +29,11 @@ import { AuthModule } from '../auth/auth.module';
       signOptions: { expiresIn: '1h', algorithm: 'RS256' },
     }),
     AuthModule,
+    ReservationModule, // ReservationModule is included here
     PaymentMethodModule,
     MongooseModule.forFeature([
       { name: Transaction.name, schema: TransactionSchema },
+      { name: Reservation.name, schema: ReservationSchema },
       { name: PaymentMethod.name, schema: PaymentMethodSchema },
     ]),
   ],
@@ -37,3 +41,4 @@ import { AuthModule } from '../auth/auth.module';
   providers: [TransactionService],
 })
 export class TransactionModule {}
+

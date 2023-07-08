@@ -13,6 +13,10 @@ export class CreatePaymentMethodDto {
 
   @ApiProperty()
   @IsNotEmpty()
+  cardName: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   expirationDate: string;
 
   @ApiProperty()

@@ -42,5 +42,6 @@ import { AuthModule } from '../auth/auth.module';
   ],
   controllers: [ReservationController],
   providers: [ReservationService],
+  exports: [ReservationService],
 })
 export class ReservationModule {}
