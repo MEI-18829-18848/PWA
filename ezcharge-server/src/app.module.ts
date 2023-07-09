@@ -7,12 +7,20 @@ import { TransactionModule } from './transaction/transaction.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { NotificationModule } from './notification/notification.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     ChargingStationModule,
     ChargingSlotModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/ezcharge'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGO_URI'),
+      }),
+      inject: [ConfigService],
+    }),
     PaymentMethodModule,
     TransactionModule,
     ReservationModule,

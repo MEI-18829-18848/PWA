@@ -1,0 +1,326 @@
+{
+  "adminUsers": [
+    {
+      "username": "Selmer2",
+      "password": "_RHJdRCyRn6xBKT",
+      "roles": "admin",
+      "email": "Devon_Emard@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Asha_Bauch",
+      "password": "FqqIZQm1mzAVUT3",
+      "roles": "admin",
+      "email": "Kayli1@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Friedrich.Corkery78",
+      "password": "lG2jxFq3woJs0F5",
+      "roles": "admin",
+      "email": "Leonel.Pfannerstill58@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Laura81",
+      "password": "_pDyEt7uBsr8TnN",
+      "roles": "admin",
+      "email": "Shaina6@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Alicia_Goodwin",
+      "password": "OrGDjjp6Bv2qhxW",
+      "roles": "admin",
+      "email": "Marian.Kunde@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Brook_Koelpin",
+      "password": "4wxtbTUaRw2wAiz",
+      "roles": "admin",
+      "email": "Adrian_Turcotte66@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Maxime75",
+      "password": "rq0l8y9MzRUrPRP",
+      "roles": "admin",
+      "email": "Angelo.Mante@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Skye64",
+      "password": "lKTtViLErUmVZ5H",
+      "roles": "admin",
+      "email": "Bertha57@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Cristina_Dickens65",
+      "password": "SFxA5wQm227XD9l",
+      "roles": "admin",
+      "email": "Kyla59@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Shirley.Bergnaum",
+      "password": "X4Ss1EHHrGCZCMq",
+      "roles": "admin",
+      "email": "Wade_Lebsack@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Berry_Hudson10",
+      "password": "RCeEWcme4tglz6s",
+      "roles": "admin",
+      "email": "Julia_Rohan@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Kaya24",
+      "password": "5KweUNiDAUc1Cjq",
+      "roles": "admin",
+      "email": "Kaya33@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Ashley.Hilll",
+      "password": "v11f1n9o71yIIIj",
+      "roles": "admin",
+      "email": "Sid.Deckow-King4@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Rhoda_Mosciski",
+      "password": "qoRaA20bYpB6h83",
+      "roles": "admin",
+      "email": "Kevin_Howe47@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Valerie81",
+      "password": "lF0TU_r00UnvdVC",
+      "roles": "admin",
+      "email": "Ward.Bayer@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Odessa97",
+      "password": "dIonP3thF_1pNgj",
+      "roles": "admin",
+      "email": "Darryl_Balistreri67@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Ezekiel_Collier",
+      "password": "kULjXpWnEqosoKF",
+      "roles": "admin",
+      "email": "Sid.Stracke@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Jermaine_Ratke48",
+      "password": "k4YFEVko5VSLZ2l",
+      "roles": "admin",
+      "email": "Hilario.Brakus@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Isaias66",
+      "password": "Fv80NphTIeG9HNK",
+      "roles": "admin",
+      "email": "Jaclyn_Fritsch@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Jadyn_OConnell99",
+      "password": "DhKpeQi5eAX6EVr",
+      "roles": "admin",
+      "email": "Maude.Jenkins76@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    }
+  ],
+  "regularUsers": [
+    {
+      "username": "Audie97",
+      "password": "F2loirJvfsaCFAl",
+      "roles": "user",
+      "email": "Zackery.Emmerich23@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Adriel_Pagac77",
+      "password": "zH3BrNDaANp_zuL",
+      "roles": "user",
+      "email": "Rose.Davis@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Jovanny_Prosacco98",
+      "password": "BsOj4MzUzzD5HYe",
+      "roles": "user",
+      "email": "Mariela.Vandervort7@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Mervin.Crona",
+      "password": "20x2pGmIT_9kulo",
+      "roles": "user",
+      "email": "Antonietta.Murphy48@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Buck.Oberbrunner",
+      "password": "AuXf9it2gFjTmUm",
+      "roles": "user",
+      "email": "Alan86@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Douglas51",
+      "password": "0lmZiDPV6TEUZAx",
+      "roles": "user",
+      "email": "Amie5@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Laila.Walter",
+      "password": "2glZ6HW60eJI7Mo",
+      "roles": "user",
+      "email": "Helena.Metz-Denesik2@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Sunny73",
+      "password": "EUhbIU_vNujV0RF",
+      "roles": "user",
+      "email": "Arthur.Zemlak95@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Orin_Rohan44",
+      "password": "4dfgh53m2kW676t",
+      "roles": "user",
+      "email": "Alisa_Cremin@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Craig.Jaskolski48",
+      "password": "168aMFNxziKq_x7",
+      "roles": "user",
+      "email": "Wilmer.Jakubowski88@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Elise.Rohan-Bauch37",
+      "password": "a0p2SnAW3yS6oTG",
+      "roles": "user",
+      "email": "Abraham24@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Walter.Wunsch61",
+      "password": "kSPS41_anHpocqB",
+      "roles": "user",
+      "email": "Gianni94@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Bart_Hoppe18",
+      "password": "qqgVX5uZ9u6dlJa",
+      "roles": "user",
+      "email": "Kelly.Kovacek@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Blair8",
+      "password": "f1yIcrCmwmjkz89",
+      "roles": "user",
+      "email": "Pink30@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Saul78",
+      "password": "eJjGTY2ULiE8WS3",
+      "roles": "user",
+      "email": "Ezekiel_Schaden@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Gonzalo.Bradtke71",
+      "password": "O4FQwWaa5Z48X_D",
+      "roles": "user",
+      "email": "Dena.Roob29@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Keenan.Schimmel",
+      "password": "C_LAni2xSWVnyL3",
+      "roles": "user",
+      "email": "Saul92@gmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Laurel68",
+      "password": "bHISehaPnI2Ss15",
+      "roles": "user",
+      "email": "Eleonore8@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Nels.Turner",
+      "password": "FDYXnjEHGrhgIoY",
+      "roles": "user",
+      "email": "Rae61@yahoo.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    },
+    {
+      "username": "Fermin.Durgan",
+      "password": "ICxEXl1UyNQ1xX_",
+      "roles": "user",
+      "email": "Bo25@hotmail.com",
+      "responseStatus": 201,
+      "responseStatusText": ""
+    }
+  ]
+}

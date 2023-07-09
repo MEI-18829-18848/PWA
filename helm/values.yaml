@@ -1,0 +1,16 @@
+replicaCount: 3
+
+authBackend:
+  image:
+    repository: registry.hub.docker.com/mabsipca/auth
+    tag: v1
+
+ezchargeBackend:
+  image:
+    repository: registry.hub.docker.com/mabsipca/ezcharge-backend
+    tag: v1
+
+ezchargeFrontend:
+  image:
+    repository: registry.hub.docker.com/mabsipca/ezcharge-web
+    tag: V1

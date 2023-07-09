@@ -10,8 +10,8 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
-  HttpStatus,
-} from '@nestjs/common';
+  HttpStatus, UnauthorizedException, Headers
+} from "@nestjs/common";
 import { ChargingStationService } from './charging-station.service';
 import { ChargingStation } from './schemas/charging-station.schema';
 import { ApiTags, ApiOperation, ApiParam, ApiBody } from '@nestjs/swagger';
@@ -21,11 +21,26 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Express, Response } from 'express';
 import { AdminGuard } from '../auth/admin-guard/admin.guard';
 import { UserGuard } from '../auth/user/user.guard';
+import * as jwt from "jsonwebtoken";
+
+interface JwtPayload {
+  user_id: string;
+}
 
 @Controller('charging-stations')
 @ApiTags('Charging Stations')
 export class ChargingStationController {
   constructor(private chargingStationService: ChargingStationService) {}
+
+  private getUserIdFromToken(token: string): string {
+    try {
+      const decoded = jwt.decode(token.split(' ')[1]) as JwtPayload;
+      console.log(decoded)
+      return decoded?.user_id;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
+  }
 
   @Get('image/:id')
   downloadImage(@Param('id') id: string, @Res() response: Response) {
@@ -85,8 +100,9 @@ export class ChargingStationController {
   @Get()
   @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Get all charging stations' })
-  findAll(): Promise<ChargingStation[]> {
-    return this.chargingStationService.findAll();
+  findAll( @Headers('authorization') token: string): Promise<ChargingStation[]> {
+    const userId = this.getUserIdFromToken(token);
+    return this.chargingStationService.findAll(userId);
   }
 
   @Get(':id')
