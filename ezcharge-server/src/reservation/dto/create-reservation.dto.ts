@@ -29,4 +29,7 @@ export class CreateReservationDto {
   @ApiProperty()
   @IsNumber()
   pricePerKw: number;
+
+  @ApiProperty()
+  transactionId: string;
 }

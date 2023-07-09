@@ -34,12 +34,15 @@ export class ReservationService {
       throw new NotFoundException('Slot not found');
     }
 
-    const reservation: Reservation = new Reservation(createReservationDto);
+    const reservation: Reservation = new this.reservationModel(createReservationDto);
 
     slot.reservations.push(reservation);
+    await chargingStation.save();
 
     return reservation;
   }
+
+
 
   async findAll(stationId: string, slotId: string): Promise<Reservation[]> {
     const chargingStation = await this.chargingStationModel
@@ -146,4 +149,50 @@ export class ReservationService {
     await chargingStation.save();
     return deletedReservation;
   }
+
+  async findReservationByTransactionId(transactionId: string): Promise<any> {
+    const station = await this.chargingStationModel.findOne({
+      "slots.reservations.transactionId": transactionId
+    }).lean().exec();
+
+    if (!station || !station.slots) {
+      throw new Error(`No reservation found with transaction id ${transactionId}`);
+    }
+
+    for (const slot of station.slots) {
+      if (!slot.reservations) {
+        console.error(`No reservations found for slot ${slot._id}`);
+        continue;
+      }
+
+      for (const reservation of slot.reservations) {
+        if (reservation.transactionId === transactionId.toString()) {
+          return {
+            user: reservation.user,
+            startTime: reservation.startTime,
+            endTime: reservation.endTime,
+            duration: reservation.duration,
+            totalPrice: reservation.totalPrice,
+            transactionId: reservation.transactionId,
+            paymentMethodId: reservation.paymentMethodId,
+            totalKW: reservation.totalKW,
+            pricePerKw: reservation.pricePerKw,
+            station: {
+              name: station.name,
+              owner: station.owner,
+              location: station.location,
+              address: station.address,
+              operationTime: station.operationTime,
+              kwhCapacity: station.kwhCapacity,
+              plugType: station.plugType,
+              pricePerKw: station.pricePerKw,
+            }
+          };
+        }
+      }
+    }
+
+    throw new Error(`No reservation found with transaction id ${transactionId}`);
+  }
+
 }

@@ -4,6 +4,12 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Disable CORS
+  app.enableCors({
+    origin:'*'
+    }); 
+
   const config = new DocumentBuilder()
     .setTitle('EzCharge')
     .setDescription('The EzCharge API ')

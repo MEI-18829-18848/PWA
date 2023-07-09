@@ -58,9 +58,9 @@ export class ChargingSlotService {
     if (!chargingStation) {
       throw new Error('Charging station not found');
     }
-
-    const chargingSlot = new ChargingSlot(chargingSlotDto);
-
+    chargingSlotDto.reservations = [];
+    const chargingSlot = new this.chargingSlotModel(chargingSlotDto);
+    chargingSlot.reservations= [];
     chargingStation.slots.push(chargingSlot);
     await chargingStation.save();
     return chargingSlot;

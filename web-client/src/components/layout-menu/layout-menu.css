@@ -1,0 +1,32 @@
+.footer-text {
+    text-align: center;
+}
+
+.layout {
+    min-height: 100vh;
+}
+
+.layout-header {
+    padding: 0;
+    background-color: white;
+}
+
+.content-container {
+    margin: 0 16px;
+}
+
+.content {
+    padding: 24px;
+    min-height: 360px;
+    margin-top: 20px;
+    background: #fff;
+}
+
+.menu-logo {
+    padding: 16px;
+    text-align: center;
+}
+
+.menu-logo img {
+    max-width: 100%;
+}

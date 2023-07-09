@@ -73,14 +73,16 @@ export class ChargingStation extends Document {
     endTime: Date;
   }[];
 
-  // slot properties
   @ApiProperty()
+  @Prop({ required: true })
   kwhCapacity: number;
 
   @ApiProperty()
+  @Prop({ required: true })
   plugType: string;
 
   @ApiProperty()
+  @Prop({ required: true })
   pricePerKw: number;
 }
 

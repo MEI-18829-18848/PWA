@@ -1,0 +1,19 @@
+.add-station-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.time-picker-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.time-picker {
+    width: 48%;
+}
+
+.submit-button {
+    width: 100%;
+}
