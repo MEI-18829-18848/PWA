@@ -17,7 +17,7 @@ import * as jwt from 'jsonwebtoken';
 import { UserGuard } from "../auth/user/user.guard";
 
 interface JwtPayload {
-  userId: string;
+  user_id: string;
 }
 
 @Controller('payment-method')
@@ -29,7 +29,7 @@ export class TransactionController {
   private getUserIdFromToken(token: string): string {
     try {
       const decoded = jwt.decode(token.split(' ')[1]) as JwtPayload;
-      return decoded?.userId;
+      return decoded?.user_id;
     } catch (error) {
       throw new UnauthorizedException('Invalid token');
     }

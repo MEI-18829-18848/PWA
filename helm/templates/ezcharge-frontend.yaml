@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ezcharge-frontend
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: ezcharge-frontend
+  template:
+    metadata:
+      labels:
+        app: ezcharge-frontend
+    spec:
+      containers:
+      - name: ezcharge-frontend
+        image: "{{ .Values.ezchargeFrontend.image.repository }}:{{ .Values.ezchargeFrontend.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        env:
+        - name: REACT_APP_AUTH_BACK_END
+          value: http://localhost:8085
+        - name: REACT_APP_REST_BACK_END
+          value: http://localhost:3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ezcharge-frontend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: ezcharge-frontend

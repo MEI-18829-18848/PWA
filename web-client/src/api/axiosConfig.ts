@@ -2,8 +2,9 @@ import axios from 'axios';
 import {getCurrentToken} from "../services/auth.service";
 
 // Set the base URL
-const BASE_URL = 'http://127.0.0.1:3000'; // Replace with your base URL
-axios.defaults.baseURL = BASE_URL;
+const API_URL = 'http://127.0.0.1:3001';
+//const API_URL = process.env.REACT_APP_REST_BACK_END;
+axios.defaults.baseURL = API_URL;
 
 // Interceptor to inject the token in the authorization header
 axios.interceptors.request.use((config) => {
