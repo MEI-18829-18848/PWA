@@ -88,6 +88,13 @@ const AddStation: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                    name="pricePerKw"
+                    rules={[{ required: true, message: 'Please input the price per kWh!' }]}
+                >
+                    <InputNumber placeholder="Price per kWh" style={{ width: '100%' }} />
+                </Form.Item>
+
+                <Form.Item
                     name="plugType"
                     rules={[{ required: true, message: 'Please select the plug type!' }]}
                 >
@@ -96,13 +103,6 @@ const AddStation: React.FC = () => {
                         <Option value="CCS2">CCS2</Option>
                         <Option value="Tesla">Tesla</Option>
                     </Select>
-                </Form.Item>
-
-                <Form.Item
-                    name="pricePerKw"
-                    rules={[{ required: true, message: 'Please input the price per kWh!' }]}
-                >
-                    <InputNumber placeholder="Price per kWh" style={{ width: '100%' }} />
                 </Form.Item>
 
                 <Row gutter={8}>

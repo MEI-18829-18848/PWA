@@ -1,30 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { RefAttributes, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {Button, Form, Input, TimePicker, Select, InputNumber, Row, Col, Table, Tooltip} from 'antd';
-import { fetchStation, updateStation, deleteStation } from "../../../services/stations.service";
+import {Button, Form, Input, TimePicker, Select, InputNumber, Row, Col, 
+    Table, Tooltip, Upload, UploadProps, message, Image } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { fetchStation, updateStation, deleteStation, uploadStationImage, downloadStationImage } from "../../../services/stations.service";
 import moment from 'moment';
 import './viewStation.css';
 import SlotsDisplay from "../slotsData/slotsData";
 import {addSlot} from "../../../services/slots.service";
+import { RcFile, UploadChangeParam, UploadFile } from 'antd/es/upload';
+import { UploadRef } from 'antd/es/upload/Upload';
+import axios, { HttpStatusCode } from 'axios';
+import { error } from 'console';
 
 const { Option } = Select;
-
-
 
 const StationView: React.FC = () => {
     const { id } = useParams();
     const [station, setStation] = useState<any>(null);
     const [isEditing, setIsEditing] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState<RcFile>();
+    const [imageUrl, setImageUrl] = useState<string>();
     const navigate = useNavigate();
 
     const fetchStationData = async () => {
         const data = await fetchStation(id);
         setStation(data);
     };
-
+    
+    const fetchStationImage = async () => {
+        setImageUrl(`http://localhost:3000/charging-stations/image/${id}`);
+    }
+    
     useEffect(() => {
         if (id != undefined) {
             fetchStationData();
+            fetchStationImage();
         }
     }, [id]);
 
@@ -64,6 +76,69 @@ const StationView: React.FC = () => {
             fetchStationData();
         }
     }
+    
+    const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+        console.log(info.file.status)
+        switch(info.file.status){
+            case 'uploading':
+                setLoading(true);
+                return;
+            case 'done':
+                setLoading(false);
+                fetchStationImage();
+                break;
+            case 'error':
+                setLoading(false);
+                console.log(info.file)
+                break;
+        }
+    };
+    
+    const handleCustomRequest = async (options: any) => {
+        const { file, onSuccess, onError, onProgress } = options;
+        try {
+            console.log(file)
+            let res = await uploadStationImage(file, id!);
+            message.success("Image uploaded successfully!")
+            onSuccess(res);
+        } catch (error) {
+            // Handle upload error
+            message.error("An error ocurred while uploading image")
+            onError(error);
+        }
+    };
+
+    const beforeImageUpload = (file: RcFile) => {
+        let isSupportedType = false;
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        switch (file.type) {
+            case 'image/jpeg':
+            case 'image/png':
+            case 'image/svg+xml':
+            case 'image/webp':
+                isSupportedType = true;
+                if (!isLt2M) {
+                    message.error('Max file size is 2MB.');
+                    break;
+                }
+                setImage(file)
+                break;
+            default:
+                setImage(undefined)
+                console.log(file)
+                message.error('Unsupported file type: must be jpg, png, svg, webp.');
+                break;
+        }
+        console.log(isSupportedType && isLt2M)
+        return isSupportedType && isLt2M;
+    };
+
+    const uploadButton = (
+    <div>
+        {loading ? <LoadingOutlined /> : <PlusOutlined />}
+        <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+    );
 
     return (
         <div className="station-view-container">
@@ -89,6 +164,19 @@ const StationView: React.FC = () => {
                                 <span>{station.owner}</span>
                             </Form.Item>
                             */}
+                            <Form.Item
+                                name="stationImage"
+                            >
+                                <Upload name='avatar' className='station-image'
+                                    listType="picture-card" showUploadList={false}
+                                    customRequest={handleCustomRequest}
+                                    beforeUpload={beforeImageUpload} onChange={handleChange} >
+                                        {imageUrl ? 
+                                            <img src={imageUrl} 
+                                            alt='image' style={{ width: '100%' }} /> 
+                                            : uploadButton}
+                                </Upload>
+                            </Form.Item>
                             <Form.Item label="Name" name="name">
                                 <Input disabled={!isEditing} />
                             </Form.Item>

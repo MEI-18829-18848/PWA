@@ -1,5 +1,5 @@
 import React from "react";
-import { DesktopOutlined, PieChartOutlined, BellOutlined } from "@ant-design/icons";
+import { DesktopOutlined, PieChartOutlined, BellOutlined, PoweroffOutlined, ThunderboltOutlined } from "@ant-design/icons";
 
 type MenuItem = {
     key: React.Key;
@@ -9,8 +9,9 @@ type MenuItem = {
 
 const items: MenuItem[] = [
     { key: '/dashboard', icon: <PieChartOutlined />, label: 'Dashboard' },
-    { key: '/stations', icon: <DesktopOutlined />, label: 'Stations' },
+    { key: '/stations', icon: <ThunderboltOutlined />, label: 'Stations' },
     { key: '/notifications', icon: <BellOutlined />, label: 'Notifications' },
+    { key: '/logout', icon: <PoweroffOutlined />, label: 'Logout' },
 ];
 
 const GetMenuItems = () => {

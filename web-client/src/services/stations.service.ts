@@ -1,3 +1,4 @@
+import { RcFile } from 'antd/es/upload';
 import axios from 'axios';
 
 export const fetchStations = async () => {
@@ -19,6 +20,31 @@ export const addStation = async (stationData: any) => {
         throw error;
     }
 };
+
+export const uploadStationImage = async (stationImage: RcFile, stationId: string) => {
+    try {
+        let form = new FormData()
+        form.append('file', stationImage);
+
+        return axios.post(`/charging-stations/image/${stationId}`, form, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+        });
+    } catch (error) {
+        console.error('Error uploading station image:', error);
+        throw error;
+    }
+};
+
+export const downloadStationImage = async (stationId: string) => {
+    try {
+        return axios.get(`/charging-stations/image/${stationId}`);
+    } catch (error) {
+        console.error('Error uploading station image:', error);
+        throw error;
+    }
+}
 
 export const fetchStation = async (id: string | undefined) => {
     try {

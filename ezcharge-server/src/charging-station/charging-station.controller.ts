@@ -59,11 +59,11 @@ export class ChargingStationController {
       );
 
       // Send the file content as the response
-      response.send(res.image);
+      return response.send(res.image);
     });
   }
 
-  @Patch('image/:id')
+  @Post('image/:id')
   @UseInterceptors(FileInterceptor('file'))
   uploadImage(
     @Param('id') id: string,
@@ -79,11 +79,7 @@ export class ChargingStationController {
       default:
         return res.status(415).send('Unsupported Media Type');
     }
-    return this.chargingStationService.uploadImage(
-      id,
-      file.buffer,
-      file.mimetype,
-    );
+    return res.status(200).send('Success');
   }
 
   @Get()

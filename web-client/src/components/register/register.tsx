@@ -26,15 +26,14 @@ const RegisterForm: React.FC = () => {
 
     const onFinish = async (values: any) => {
         console.log('Received values of form: ', values);
-        // Add your registration logic here
-
 
         try {
-            if( await register(values.username, values.email, values.password) != null )
+            var x = await register(values.username, values.password, values.email)
+            console.log(x)
+            if( x != null )
                 navigate('/login')
         } catch (error) {
             console.error('Register error:', error);
-            // Handle the error, e.g., show an error message to the user.
         }
     };
 

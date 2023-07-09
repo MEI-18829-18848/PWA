@@ -4,6 +4,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import GetMenuItems from "./menu-item";
 import './layout-menu.css';
 import logo from '../../assets/Logo.png';
+import { logout } from '../../services/auth.service';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -14,6 +15,10 @@ const LayoutMenu: React.FC = () => {
     const navigate = useNavigate();
 
     const handleMenuClick = (path: string) => {
+        if(path === "/logout"){
+            logout()
+            navigate("/login");
+        }
         navigate(path);
     };
 
