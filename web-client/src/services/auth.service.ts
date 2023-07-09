@@ -2,7 +2,8 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import {redirect, useNavigate} from "react-router-dom";
 
-const API_URL = 'http://localhost:8085'; // Replace with your API URL
+const API_URL = 'http://localhost:8085';
+//const API_URL = process.env.REACT_APP_AUTH_BACK_END;
 
 interface TokenClaims {
     user_id: number;

@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /auth
+        backend:
+          service:
+            name: auth-backend
+            port:
+              number: 8085
+      - pathType: Prefix
+        path: /api
+        backend:
+          service:
+            name: ezcharge-backend
+            port:
+              number: 3001
+      - pathType: Prefix
+        path: /web
+        backend:
+          service:
+            name: ezcharge-frontend
+            port:
+              number: 80

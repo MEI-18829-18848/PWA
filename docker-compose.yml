@@ -25,14 +25,8 @@ services:
     volumes:
       - mongo_data:/data/db
       - ./data:/data/db_local
-
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+    networks:
+      - ezcharge
 
   auth-backend: 
     build: 
@@ -43,6 +37,28 @@ services:
       - '8085:8085'
     networks:
       - ezcharge
+
+  ezcharge-backend:
+    build: 
+      context: ./ezcharge-server
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/ezcharge
+    ports:
+      - 3001:3001
+    networks:
+      - ezcharge
+
+  ezcharge-frontend:
+    build: 
+      context: ./web-client
+      args:
+        REACT_APP_AUTH_BACK_END: http://auth-backend:8085
+        REACT_APP_REST_BACK_END: http://ezcharge-backend:3001
+    ports:
+      - 8080:80
+    networks:
+      - ezcharge
+
 volumes:
   mongo_data:
 networks:
