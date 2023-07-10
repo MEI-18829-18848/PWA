@@ -100,9 +100,15 @@ export class ChargingStationController {
   @Get()
   @UseGuards(UserGuard)
   @ApiOperation({ summary: 'Get all charging stations' })
-  findAll( @Headers('authorization') token: string): Promise<ChargingStation[]> {
+  findAllByOwner( @Headers('authorization') token: string): Promise<ChargingStation[]> {
     const userId = this.getUserIdFromToken(token);
-    return this.chargingStationService.findAll(userId);
+    return this.chargingStationService.findAllByOwner(userId);
+  }
+  
+  @Get('all')
+  @ApiOperation({ summary: 'Get all charging stations' })
+  findAll( @Headers('authorization') token: string): Promise<ChargingStation[]> {
+    return this.chargingStationService.findAll();
   }
 
   @Get(':id')
