@@ -1,0 +1,9 @@
+.dashboard-container{
+    background-color: transparent;
+    color: transparent;
+    align-items: start;
+}
+
+.dashboard-container .card-content{
+    font-size: larger;
+}
