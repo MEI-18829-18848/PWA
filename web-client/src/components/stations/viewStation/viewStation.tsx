@@ -9,9 +9,6 @@ import './viewStation.css';
 import SlotsDisplay from "../slotsData/slotsData";
 import {addSlot} from "../../../services/slots.service";
 import { RcFile, UploadChangeParam, UploadFile } from 'antd/es/upload';
-import { UploadRef } from 'antd/es/upload/Upload';
-import axios, { HttpStatusCode } from 'axios';
-import { error } from 'console';
 
 const { Option } = Select;
 

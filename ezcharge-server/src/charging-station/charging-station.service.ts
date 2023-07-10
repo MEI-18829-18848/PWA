@@ -35,8 +35,12 @@ export class ChargingStationService {
       });
   }
 
-  async findAll(userId: string): Promise<ChargingStation[]> {
+  async findAllByOwner(userId: string): Promise<ChargingStation[]> {
     return await this.chargingStationModel.find({ owner: userId }).exec();
+  }
+  
+  async findAll(): Promise<ChargingStation[]> {
+    return await this.chargingStationModel.find().exec();
   }
 
   async findById(id: string): Promise<ChargingStation> {
