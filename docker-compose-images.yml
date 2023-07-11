@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./db-data:/var/lib/postgresql/data
+          # copy the sql script to create tables
+      - ./bd.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    networks:
+        - ezcharge
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: ezcharge
+    volumes:
+      - mongo_data:/data/db
+      - ./data:/data/db_local
+    networks:
+      - ezcharge
+
+  auth-backend: 
+    image: mabsipca/auth:v1
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres?currentSchema=auth
+    ports: 
+      - '8085:8085'
+    networks:
+      - ezcharge
+
+  ezcharge-backend:
+    image: mabsipca/ezcharge-backend:v2
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/ezcharge
+    ports:
+      - 3001:3001
+    networks:
+      - ezcharge
+
+  ezcharge-frontend:
+    image: mabsipca/ezcharge-web:v2
+    ports:
+      - 8080:80
+    networks:
+      - ezcharge
+
+volumes:
+  mongo_data:
+networks:
+  ezcharge:  
